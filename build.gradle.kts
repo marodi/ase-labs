@@ -6,6 +6,11 @@
  */
 plugins { 
     java
+    application
+}
+
+application {
+    mainClass = "hu.bme.mit.ase.shingler.similarity.SimilarityApp"
 }
 
 java.toolchain {
