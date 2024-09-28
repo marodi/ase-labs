@@ -7,6 +7,7 @@
 plugins { 
     java
     application
+    jacoco
 }
 
 application {
@@ -38,4 +39,16 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+}
+
+tasks {
+    test {
+        useJUnitPlatform()
+        testLogging.showStandardStreams = true
+        finalizedBy(jacocoTestReport)
+    }
+
+    jacocoTestReport {
+        inputs.files(test.get().outputs)
+    }
 }
